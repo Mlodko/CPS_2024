@@ -34,6 +34,53 @@ if IF_SHOW_FIRST_PART:
 
 ## Second part
 
+sine_freqs = [
+    (5, 105, 205),
+    (95, 105, 295),
+    (95, 105)
+]
+colors = ['r-', 'g-', 'b-']
+
+## Sine
+for freqset in sine_freqs:
+    fig, ax = plt.subplots()
+    # Title
+    ax.set(title=f'Sine frequencies: {freqset}')
+    ax.grid()
+
+    for index, freq in enumerate(freqset):
+        sine = lambda t: AMPLITUDE * np.sin(t * freq)
+        ## Analog
+        t = np.arange(0, TIME_DURATION, 1/analog_freq)
+        y = sine(t)
+        ax.plot(t, y, colors[index] + '-')
+
+        ## Sampling
+        t = np.arange(0, TIME_DURATION, 1/sampling_freq)
+        y = sine(t)
+        ax.plot(t, y, colors[index])
+    plt.show()
+
+## Cosine
+for freqset in sine_freqs:
+    fig, ax = plt.subplots()
+    # Title
+    ax.set(title=f'Cosine frequencies: {freqset}')
+    ax.grid()
+
+    for index, freq in enumerate(freqset):
+        cosine = lambda t: AMPLITUDE * np.cos(t * freq)
+        ## Analog
+        t = np.arange(0, TIME_DURATION, 1/analog_freq)
+        y = cosine(t)
+        ax.plot(t, y, colors[index] + '-')
+
+        ## Sampling
+        t = np.arange(0, TIME_DURATION, 1/sampling_freq)
+        y = cosine(t)
+        ax.plot(t, y, colors[index])
+    plt.show()
+
 
 
 
